@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <script>
+        // Function to handle redirection based on country
+        function redirectByCountry() {
+            // Use the ipapi API to get the user's country information
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    const userCountry = data.country_name; // Get country name from the API response
+                    const targetCountries = ["Canada", "United Kingdom", "United States", "Australia"]; // List of target countries
+                    
+                    // Check if the user is from one of the specified countries
+                    if (targetCountries.includes(userCountry)) {
+                        // Redirect to the specified link if from one of the target countries
+                        window.location.href = "https://test1.com";
+                    } else {
+                        // Redirect to a different link if not from the target countries
+                        window.location.href = "https://world1.com";
+                    }
+                })
+                .catch(error => {
+                    // Log error if API call fails and fallback to default redirection
+                    console.error('Error fetching location:', error);
+                    window.location.href = "https://world1.com"; // Fallback redirection
+                });
+        }
+
+        // Call the redirection function when the page loads
+        redirectByCountry();
+    </script>
+</head>
+<body>
+    <!-- Content for the main page, which will be skipped if redirection happens -->
+    <h1>Welcome to My Website</h1>
+    <p>If you see this page, the redirection didn't happen immediately. It may be due to a slow API response.</p>
+    <p>Please wait while we redirect you...</p>
+</body>
+</html>
