@@ -1,6 +1,4 @@
 <?php
-// Include GeoIP library (if needed, install it via Composer or use an online service like ipstack or geoPlugin)
-
 // Fetch the visitor's IP address
 $ipAddress = $_SERVER['REMOTE_ADDR'];
 
